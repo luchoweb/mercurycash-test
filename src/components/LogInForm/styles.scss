@@ -5,6 +5,7 @@
 
   &__group {
     margin-bottom: 2rem;
+    position: relative;
     text-align: left;
   }
 
@@ -25,6 +26,20 @@
     &:focus {
       box-shadow: var(--shadow);
       outline: none;
+    }
+  }
+
+  &__eye {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    right: .5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 200ms ease-in-out;
+
+    &:hover {
+      opacity: 0.7;
     }
   }
 

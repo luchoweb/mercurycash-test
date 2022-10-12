@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { validateEmail, validatePassword } from "../../utils/formValidators";
 
+import eyeIcon from "../../assets/images/eye.png";
+
 import "./styles.scss";
 
 const LogInForm = () => {
@@ -48,6 +50,13 @@ const LogInForm = () => {
           required={true}
           placeholder="Password"
           onKeyUp={(event) => setPassword(event.target.value)}
+        />
+
+        <img
+          src={eyeIcon}
+          alt="eye"
+          className="form__eye"
+          onClick={() => setInputPasswordType(!inputPasswordType)}
         />
 
         { formErrors?.password && <p className="form__error">Enter a valid password.</p> }
