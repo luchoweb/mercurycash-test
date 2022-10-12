@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SignInPage from './pages/login/SignIn';
+import SignInPage from './pages/login/signIn';
 
 function App() {
   const [loading, setLoading] = useState(true);

@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { validateEmail, validatePassword } from "../../utils/formValidators";
 
+import "./styles.scss";
+
 const LogInForm = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [formErrors, setFormErrors] = useState()
+  const [formErrors, setFormErrors] = useState();
+  const [inputPasswordType, setInputPasswordType] = useState(true);
 
   const submitHandle = (event) => {
     event.preventDefault();
@@ -31,6 +34,7 @@ const LogInForm = () => {
           type="email"
           className="form__input"
           required={true}
+          placeholder="Email"
           onKeyUp={(event) => setEmail(event.target.value)}
         />
         
@@ -39,9 +43,10 @@ const LogInForm = () => {
 
       <div className="form__group">
         <input
-          type="text"
+          type={inputPasswordType ? 'password' : 'text'}
           className="form__input"
           required={true}
+          placeholder="Password"
           onKeyUp={(event) => setPassword(event.target.value)}
         />
 

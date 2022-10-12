@@ -3,11 +3,15 @@
 @font-face {
   font-family: "Gotham Rounded Book";
   src: url("./assets/fonts/GothamRounded-Book.woff2") format("woff2"), url("./assets/fonts/GothamRounded-Book.woff") format("woff");
+  font-display: swap;
+  font-weight: normal;
 }
 
 @font-face {
   font-family: "Gotham Rounded Bold";
   src: url("./assets/fonts/GothamRounded-Bold.woff2") format("woff2"), url("./assets/fonts/GothamRounded-Bold.woff") format("woff");
+  font-display: swap;
+  font-weight: normal;
 }
 
 /* GLOBAL VARS */
@@ -18,9 +22,6 @@
   --color-lines_disabled: #DFDFDF;
   --color-level1: #F6F7FB;
   --color-level0: #FFFFFF;
-  --color-btc: #FF885F;
-  --color-eth: #2F84C1;
-  --color-dash: #129CD3;
   --color-danger: #FF7885;
   --color-warning: #FAD008;
   --color-success: #42CA3E;
@@ -29,13 +30,17 @@
   
   --font-normal: "Gotham Rounded Book", sans-serif;
   --font-bold: "Gotham Rounded Bold", sans-serif;
+
+  --shadow: 1px 1px 4px rgba(89,89,89,0.25);
 }
 
 /* GLOBAL STYLES */
 
 body {
-  margin: 0;
+  color: var(--color-main);
   font-family: var(--font-normal);
+  font-size: 16px;
+  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -46,4 +51,5 @@ code {
 
 h1, h2, h3, h4, h5, b, strong {
   font-family: var(--font-bold);
+  font-weight: normal;
 }
