@@ -1,0 +1,61 @@
+import { useState } from "react";
+import { validateEmail, validatePassword } from "../../utils/formValidators";
+
+const LogInForm = () => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [formErrors, setFormErrors] = useState()
+
+  const submitHandle = (event) => {
+    event.preventDefault();
+
+    const isValidEmail = validateEmail(email);
+    const isValidPassword = validatePassword(password);
+
+    setFormErrors({
+      email: !isValidEmail && true,
+      password: !isValidPassword && true
+    });
+
+    if ( !isValidEmail || !isValidPassword )
+      return false;
+
+    const data = { email, password };
+    console.log('Login successfully', data);
+  }
+
+  return (
+    <form onSubmit={(event) => submitHandle(event)} className="form">
+      <div className="form__group">
+        <input
+          type="email"
+          className="form__input"
+          required={true}
+          onKeyUp={(event) => setEmail(event.target.value)}
+        />
+        
+        { formErrors?.email && <p className="form__error">Enter a valid email.</p> }
+      </div>
+
+      <div className="form__group">
+        <input
+          type="text"
+          className="form__input"
+          required={true}
+          onKeyUp={(event) => setPassword(event.target.value)}
+        />
+
+        { formErrors?.password && <p className="form__error">Enter a valid password.</p> }
+      </div>
+
+      <button
+        className="form__button"
+        disabled={!email || !password}
+      >
+        Log In
+      </button>
+    </form>
+  )
+}
+
+export default LogInForm;
