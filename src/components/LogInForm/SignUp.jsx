@@ -7,8 +7,6 @@ import eyeIcon from "../../assets/images/eye.png";
 import "./styles.scss";
 
 const SignUpForm = () => {
-  const [loading, setLoading] = useState(true);
-
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [password2, setPassword2] = useState();
@@ -37,12 +35,10 @@ const SignUpForm = () => {
 
       if ( countries?.length )
         setCountries(countries);
-
-      setLoading(false);
     }
 
     if ( !countries ) fetchCountries();
-  }, []);
+  }, [countries]);
 
   return (
     <form onSubmit={(event) => submitHandle(event)} className="form">
@@ -115,6 +111,8 @@ const SignUpForm = () => {
                           {`${country.flag} ${country.niceName}`}
                       </option>
                   }
+
+                  return false;
               })
           : <option disabled={true}>
               Error loading countries, please refresh the page
