@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 1fr;
   min-height: 100vh;
-  padding: 2rem 0;
   place-content: center center;
   text-align: center;
 
@@ -11,7 +10,7 @@
   }
 
   &__logo {
-    margin-bottom: 3rem;
+    margin: 3rem 0;
 
     img {
       vertical-align: middle;
@@ -33,7 +32,7 @@
   &__signup-text {
     font-family: var(--font-bold);
     font-size: 1.15rem;
-    margin: 0;
+    margin: 0 0 1rem 0;
   }
 
   &__link {
