@@ -5,9 +5,10 @@ import eyeIcon from "../../assets/images/eye.png";
 
 import "./styles.scss";
 
-const LogInForm = () => {
-  const [email, setEmail] = useState();
+const SignInForm = () => {
+  const [email, setEmail] = useState(localStorage.getItem('email'));
   const [password, setPassword] = useState();
+  const [remember, setRemember] = useState(email && true);
   const [formErrors, setFormErrors] = useState();
   const [inputPasswordType, setInputPasswordType] = useState(true);
 
@@ -26,6 +27,12 @@ const LogInForm = () => {
       return false;
 
     const data = { email, password };
+
+    if ( remember ) {
+      localStorage.setItem('email', email);
+    }
+
+    // Login
     console.log('Login successfully', data);
   }
 
@@ -33,33 +40,51 @@ const LogInForm = () => {
     <form onSubmit={(event) => submitHandle(event)} className="form">
       <div className="form__group">
         <input
+          defaultValue={email}
           type="email"
           className="form__input"
           required={true}
           placeholder="Email"
           onKeyUp={(event) => setEmail(event.target.value)}
         />
-        
+
         { formErrors?.email && <p className="form__error">Enter a valid email.</p> }
       </div>
 
       <div className="form__group">
-        <input
-          type={inputPasswordType ? 'password' : 'text'}
-          className="form__input"
-          required={true}
-          placeholder="Password"
-          onKeyUp={(event) => setPassword(event.target.value)}
-        />
+          <div className="form__input-group">
+            <input
+              type={inputPasswordType ? 'password' : 'text'}
+              className="form__input"
+              required={true}
+              placeholder="Password"
+              onKeyUp={(event) => setPassword(event.target.value)}
+            />
 
-        <img
-          src={eyeIcon}
-          alt="eye"
-          className="form__eye"
-          onClick={() => setInputPasswordType(!inputPasswordType)}
-        />
+            <img
+              src={eyeIcon}
+              alt="eye"
+              className="form__eye"
+              onClick={() => setInputPasswordType(!inputPasswordType)}
+            />
+        </div>
 
         { formErrors?.password && <p className="form__error">Enter a valid password.</p> }
+      </div>
+
+      <a href="/reset-password" className="form__link reset-password">
+          Forgot Password
+      </a>
+
+      <div className="form__group checkbox">
+        <input
+          type="checkbox"
+          id="remember"
+          className="checkbox"
+          checked={remember}
+          onClick={() => setRemember(!remember)}
+        />
+        <label htmlFor="remember">Remember me.</label>
       </div>
 
       <button
@@ -72,4 +97,4 @@ const LogInForm = () => {
   )
 }
 
-export default LogInForm;
+export default SignInForm;

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getCountries } from "../../api/getCountries";
 
 const SignUpForm = () => {
   const [countries, setCountries] = useState();
+  const [loading, setLoading] = useState(true);
 
   const submitHandle = (event) => {
     event.preventDefault();

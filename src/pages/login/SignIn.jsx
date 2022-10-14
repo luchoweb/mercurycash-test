@@ -1,4 +1,4 @@
-import LogInForm from "../../components/LogInForm";
+import SignInForm from "../../components/LogInForm/SignIn";
 import Layout from "./layout";
 
 const SignInPage = () => {
@@ -6,7 +6,7 @@ const SignInPage = () => {
     <Layout>
       <h2 className="login__title">Welcome Back</h2>
 
-      <LogInForm />
+      <SignInForm />
 
       <hr role="separator" />
 
