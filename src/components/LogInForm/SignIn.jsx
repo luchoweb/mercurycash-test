@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { validateEmail, validatePassword } from "../../utils/formValidators";
 
 import eyeIcon from "../../assets/images/eye.png";
@@ -9,7 +10,6 @@ const SignInForm = () => {
   const [email, setEmail] = useState(localStorage.getItem('email'));
   const [password, setPassword] = useState();
   const [remember, setRemember] = useState(email && true);
-  const [formErrors, setFormErrors] = useState();
   const [inputPasswordType, setInputPasswordType] = useState(true);
 
   const submitHandle = (event) => {
@@ -18,18 +18,13 @@ const SignInForm = () => {
     const isValidEmail = validateEmail(email);
     const isValidPassword = validatePassword(password);
 
-    setFormErrors({
-      email: !isValidEmail && true,
-      password: !isValidPassword && true
-    });
-
     if ( !isValidEmail || !isValidPassword )
       return false;
 
     const data = { email, password };
 
-    if ( remember ) {
-      localStorage.setItem('email', email);
+    if ( !remember ) {
+        localStorage.removeItem('remember');
     }
 
     // Login
@@ -48,7 +43,7 @@ const SignInForm = () => {
           onKeyUp={(event) => setEmail(event.target.value)}
         />
 
-        { formErrors?.email && <p className="form__error">Enter a valid email.</p> }
+          { email && !validateEmail(email) && <p className="form__error">Enter a valid email.</p> }
       </div>
 
       <div className="form__group">
@@ -69,12 +64,12 @@ const SignInForm = () => {
             />
         </div>
 
-        { formErrors?.password && <p className="form__error">Enter a valid password.</p> }
+          { password && !validatePassword(password) && <p className="form__error">Enter a valid password.</p> }
       </div>
 
-      <a href="/reset-password" className="form__link reset-password">
-          Forgot Password
-      </a>
+      <Link to="/reset-password" className="form__link reset-password">
+        Forgot Password
+      </Link>
 
       <div className="form__group checkbox">
         <input
@@ -82,7 +77,7 @@ const SignInForm = () => {
           id="remember"
           className="checkbox"
           checked={remember}
-          onClick={() => setRemember(!remember)}
+          onChange={() => setRemember(!remember)}
         />
         <label htmlFor="remember">Remember me.</label>
       </div>

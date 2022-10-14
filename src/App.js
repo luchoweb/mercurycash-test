@@ -1,13 +1,27 @@
-import { useState } from 'react';
-import SignInPage from './pages/login/signIn';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from "react-router-dom";
+
+import SignInPage from './pages/account/signIn';
+import SignUpPage from "./pages/account/signUp";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
   return (
-    <div className="App">
-      <SignInPage />
-    </div>
+    <Router>
+        <Switch>
+            <Route path="/signup">
+                <SignUpPage />
+            </Route>
+            <Route exact={true} path="/">
+                <SignInPage />
+            </Route>
+            <Route>
+                <p>Error 404</p>
+            </Route>
+        </Switch>
+    </Router>
   );
 }
 

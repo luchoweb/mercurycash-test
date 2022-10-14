@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import SignInForm from "../../components/LogInForm/SignIn";
 import Layout from "./layout";
 
@@ -8,9 +10,9 @@ const SignInPage = () => {
 
       <SignInForm />
 
-      <hr role="separator" />
+      <hr />
 
-      <p className="login__signup-text">Don't have an account? <a href="#" className="login__link">Sign up</a> instead.</p>
+        <p className="login__signup-text">Don't have an account? <Link to="/signup" className="login__link">Sign up</Link> instead.</p>
     </Layout>
   )
 }
