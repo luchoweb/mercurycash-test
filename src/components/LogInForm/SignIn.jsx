@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { validateEmail, validatePassword } from "../../utils/formValidators";
 
 import eyeIcon from "../../assets/images/eye.png";
+import eyeIconLock from "../../assets/images/eyeLock.png";
 
 import "./styles.scss";
 
@@ -59,7 +60,7 @@ const SignInForm = () => {
             />
 
             <img
-              src={eyeIcon}
+              src={inputPasswordType ? eyeIcon : eyeIconLock}
               alt="eye"
               className="form__eye"
               onClick={() => setInputPasswordType(!inputPasswordType)}
