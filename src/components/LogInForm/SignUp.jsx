@@ -12,17 +12,17 @@ const SignUpForm = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [password2, setPassword2] = useState();
-  const [countries, setCountries] = useState();
+  const [country, setCountry] = useState();
+  const [agreeTerms, setAgreeTerms] = useState(false);
   const [inputPasswordType, setInputPasswordType] = useState(true);
   const [inputPassword2Type, setInputPassword2Type] = useState(true);
+
+  const [countries, setCountries] = useState();
 
   const submitHandle = (event) => {
       event.preventDefault();
 
-      const isValidEmail = validateEmail(email);
-      const isValidPassword = validatePassword(password);
-
-      if ( !isValidEmail || !isValidPassword )
+      if ( !validateEmail(email) || !validatePassword(password) || !setAgreeTerms )
           return false;
 
       const data = { email, password };
@@ -45,7 +45,7 @@ const SignUpForm = () => {
   }, []);
 
   return (
-    <form onSubmit={(event) => submitHandle(event)} className="form" autoComplete="off">
+    <form onSubmit={(event) => submitHandle(event)} className="form">
       <div className="form__group">
           <input
               type="email"
@@ -101,18 +101,53 @@ const SignUpForm = () => {
         </div>
 
       <div className="form__group">
-        <select id="countries" className="form__select">
-          { countries ? countries?.map(country => (
-              <option key={`c-${country.id}`} value={country.iso}>
-                {country.niceName}
+          <select
+            className="form__select"
+            defaultValue=""
+            onChange={(event) => setCountry(event.target.value)}
+          >
+              <option value="">
+                  Country of Residence
               </option>
-          ))
-          : <option disabled={true} selected={true}>
+              { countries ? countries?.map(country => {
+                  if ( country?.niceName !== 'UNDEFINED' ) {
+                      return <option key={`c-${country.id}`}>
+                          {`${country.flag} ${country.niceName}`}
+                      </option>
+                  }
+              })
+          : <option disabled={true}>
               Error loading countries, please refresh the page
             </option>
           }
-        </select>
+          </select>
       </div>
+
+        <div className="form__group">
+          <select className="form__select" defaultValue="english">
+              <option value="english">English</option>
+              <option value="spanish">Spanish</option>
+          </select>
+        </div>
+
+        <div className="form__group checkbox">
+            <input
+                type="checkbox"
+                id="agree-terms"
+                className="checkbox checkbox--rounded"
+                onChange={() => setAgreeTerms(!agreeTerms)}
+            />
+            <label htmlFor="agree-terms">
+                By continuing I agree to the <a href="https://mercurycash.us" target="_blank" rel="noreferrer">Terms of Services</a> and <a href="https://mercurycash.us" target="_blank" rel="noreferrer">Privacy Policy</a>
+            </label>
+        </div>
+
+        <button
+            className="form__button"
+            disabled={ !email || !password || !password2 || !country || !agreeTerms }
+            >
+            Sign up
+        </button>
     </form>
   )
 }

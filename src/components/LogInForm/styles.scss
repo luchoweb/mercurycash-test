@@ -5,6 +5,7 @@
 
   &__group {
     margin-bottom: 2rem;
+    position: relative;
     text-align: left;
 
     &.checkbox {
@@ -13,7 +14,7 @@
       gap: .3rem;
       font-family: var(--font-bold);
 
-      input[type="checkbox"] {
+      input.checkbox {
         -webkit-appearance: none;
         appearance: none;
         background-color: var(--form-background);
@@ -43,6 +44,13 @@
         &:checked::before {
           transform: scale(1);
         }
+
+        &--rounded {
+          border-radius: 50%;
+          height: 19px;
+          width: 23px;
+        }
+
       }
 
       label {
@@ -73,6 +81,30 @@
     &-group {
       position: relative;
     }
+  }
+
+  &__select {
+    background-color: var(--color-level0);
+    border-radius: 1.5rem;
+    border: 1px solid var(--color-lines_disabled);
+    color: var(--color-secondary);
+    font-family: var(--font-bold);
+    font-size: 1rem;
+    padding: 1rem .8rem;
+    position: relative;
+    width: calc(100% - 1.6rem);
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: var(--color-secondary);
+    }
+  }
+
+  select {
+    width: 100%;
   }
 
   &__eye {

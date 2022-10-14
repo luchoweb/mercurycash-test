@@ -6,6 +6,10 @@
   place-content: center center;
   text-align: center;
 
+  &.sign-up {
+    background-color: var(--color-level1);
+  }
+
   &__logo {
     margin-bottom: 3rem;
 

@@ -24,7 +24,9 @@ const SignInForm = () => {
     const data = { email, password };
 
     if ( !remember ) {
-        localStorage.removeItem('remember');
+        localStorage.removeItem('email');
+    } else {
+        localStorage.setItem('email', email);
     }
 
     // Login

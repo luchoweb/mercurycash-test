@@ -5,7 +5,7 @@ import SignUpForm from "../../components/LogInForm/SignUp";
 
 const SignUpPage = () => {
   return (
-    <Layout>
+    <Layout classname="sign-up">
         <h2 className="login__title">Create your account</h2>
 
         <SignUpForm />
