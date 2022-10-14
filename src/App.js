@@ -6,6 +6,7 @@ import {
 
 import SignInPage from './pages/account/signIn';
 import SignUpPage from "./pages/account/signUp";
+import NotFoundPage from "./pages/404/";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
                 <SignInPage />
             </Route>
             <Route>
-                <p>Error 404</p>
+                <NotFoundPage />
             </Route>
         </Switch>
     </Router>
