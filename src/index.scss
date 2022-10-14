@@ -57,10 +57,10 @@ h1, h2, h3, h4, h5, b, strong {
 .loading {
   display: grid;
   min-height: 100vh;
-  padding: 2rem 0;
   place-content: center center;
 
   &__container {
+    padding: 2rem 0;
     text-align: center;
 
     p {
